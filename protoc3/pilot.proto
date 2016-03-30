@@ -1,0 +1,143 @@
+syntax = "proto3";
+
+package com.xiang.proto.pilot;
+
+import "common.proto";
+
+//服务器根目录 http:...:8000/server
+
+// 验证用户名
+// url: /pilot/verifyUsername
+message Request11001 {
+	com.xiang.proto.RequestCommon common = 1;
+	Params params = 2;
+	message Params {
+		string userName = 1;          // 需要验证的用户名
+	}
+}
+
+message Response11001 {
+	com.xiang.proto.ResponseCommon common = 1;
+	Data data = 2;
+	message Data {
+		
+	}
+}
+
+// 注册
+// url: /pilot/register
+message Request11002 {
+	com.xiang.proto.RequestCommon common = 1;
+	Params params = 2;
+	message Params {
+		string phoneNumber = 1;              // 手机号码
+		string userName = 2;                 // 用户名
+		string pwMd5 = 3;                    // md5加密后的密码
+		string userAvatarKey = 4;            // userAvatarKey : key 
+	}
+}
+
+message Response11002 {
+	com.xiang.proto.ResponseCommon common = 1;
+	Data data = 2;
+	message Data {
+		
+	}
+}
+
+// 登录
+// url: /pilot/login
+message Request11003 {
+	com.xiang.proto.RequestCommon common = 1;
+	Params params = 2;
+	message Params {
+		string username = 1;                // 用户名或手机号
+		string pwMd5 = 2;                   // 加密后的密码
+	}
+}
+
+message Response11003 {
+	com.xiang.proto.ResponseCommon common = 1;
+	Data data = 2;
+	message Data {
+		string key = 1;                     // 用户私钥
+		string userName = 2;
+		string userAvatar = 3;
+		string phone = 4;
+		int32 userId = 5;
+	}
+}
+
+// 获取我的收藏
+// url: /pilot/getMyCollection
+message Request11004 {
+	com.xiang.proto.RequestCommon common = 1;
+	Params params = 2;
+	message Params {
+
+	}
+}
+
+message Response11004 {
+	com.xiang.proto.ResponseCommon common = 1;
+	Data data = 2;
+	message Data {
+		repeated Collect articles = 1;     // 文章列表
+	}
+}
+
+// 更新个人资料
+// url: /pilot/updateUserInfo
+message Request11005 {
+	com.xiang.proto.RequestCommon common = 1;
+	Params params = 2;
+	message Params {
+		string userName = 1;               // 用户名
+		string avatarKey = 2;              // 用户头像key zone__key
+	}
+}
+
+message Response11005 {
+	com.xiang.proto.ResponseCommon common = 1;
+	Data data = 2;
+	message Data {
+		
+	}
+}
+
+// 获取 组织 详情
+// url: /pilot/getUserDetail
+message Request11006 {
+	com.xiang.proto.RequestCommon common = 1;
+	Params params = 2;
+	message Params {
+		bool needArticles = 1;            // 是否需要返回该用户的文章
+		int32 orgId = 2;                  // 组织id
+	}
+}
+
+message Response11006 {
+	com.xiang.proto.ResponseCommon common = 1;
+	Data data = 2;
+	message Data {
+		DetailUser detailUser = 1;
+	}
+}
+
+// 获取七牛上传token
+// url: /pilot/getQiniuToken
+message Request11007 {
+	com.xiang.proto.RequestCommon common = 1;
+	Params params = 2;
+	message Params {
+		
+	}
+}
+
+message Response11007 {
+	com.xiang.proto.ResponseCommon common = 1;
+	Data data = 2;
+	message Data {
+		string token = 1;                // 返回的token
+	}
+}

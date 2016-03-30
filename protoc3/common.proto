@@ -1,0 +1,102 @@
+﻿syntax = "proto3";
+
+package com.xiang.proto;
+
+//所有图片url 均是在七牛平台上的key
+
+///////////////////////////////////   请求和返回中包含的common        /////////////////////
+message RequestCommon {
+  int32 userid = 1;
+  string userkey = 2;
+  int32 cmdid = 3;
+  int64 timestamp = 4;
+  string version = 5;// 版本, 1.0.0a
+  int32 platform = 6;// 1-Android, 2-iOS
+}
+
+message ResponseCommon {
+  int32 code = 1;         //状态码   0：正常  其他数值表示有错误
+  string message = 2;
+  int32 cmdid = 3;
+  int64 timestamp = 4;
+  int32 userid = 5;
+}
+
+// 分类
+enum Category {
+  MAIN = 0;          // 首页
+  DEEP = 1;          // 深度
+  IMAGES = 2;        // 图说
+  PEOPLE = 3;        // 人物
+  FORFUN = 4;        // 逗你开心
+  FOREIGN = 5;       // 外语
+}
+
+//组织
+message Organize {
+  int32 id = 1;                  // 组织的id
+  string name = 2;               // 组织名
+  string avatar = 3;             // 组织头像
+}
+
+// 图文
+message ImageAndText {
+  int32 id = 1;                  // id
+  string imageUrl = 2;           // 图片url
+  string text = 3;               // 图片对应的文字
+}
+
+//文章
+message Article{
+  int32 id = 1;                  // Article 的id
+  
+  Organize organize = 2;         // 所属组织
+
+  ContentType contentType = 4;   // 列表显示的内容类型 
+  int32 articleType = 5;         // 文章类型，涉及到前端页面跳转 1：web， 2：普通文章（一张cover） 3：图文（类似网易图文）
+
+  string title = 6;              // title
+  string subContent = 7;         // 摘要
+  string content = 8;            // 全部内容（短文）
+  string coverUrl = 9;           // cover图url
+  repeated ImageAndText imageAndTexts = 10;    // 图文列表
+
+  string url = 11;                // content url
+
+  Category category = 12;         // 文章分类
+  string createTime = 13;         // 创建时间"2015-01-23 19:00:02"
+
+  int32 readCount = 3;            // 阅读量
+  int32 shareCount = 14;          // 分享量
+
+  string authorName = 15;          // 作者名
+}
+
+enum ContentType{
+  BIG_IMAGE = 0;                   // 标题和一张大图
+  ARTICLE = 1;                     // 普通文章
+  SHORT_ARTICLE = 2;               // 短文
+  IMAGE_TEXT = 3;                  // 三张图文  三张图文详情必须是图文类型
+}
+
+//收藏
+message Collect {
+  int32 id = 1;                  // collect id
+  Organize organize = 2;         // 组织
+  string title = 3;              // 显示的标题
+  string collectTime = 4;        // 收藏的时间 "2015-01-23 19:00:02"
+
+  int32 articleType = 5;         // 收藏的类型。 1：web， 2：普通文章（一张cover） 3：图文（类似网易图文）
+  //string url = 6;                // 如果是网页，则这个是网页的url
+  int32 articleId = 7;           // 文章的id
+}
+
+// 用户详情
+message DetailUser {
+  int32 userId = 1;
+  string userName = 2;
+  string avatar = 3;
+  string wx_no = 4;              // 微信号
+  string wb_no = 5;              // 微博名
+  repeated Article articles = 6; // 它的文章列表
+}

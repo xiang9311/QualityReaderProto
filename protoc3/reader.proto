@@ -1,0 +1,92 @@
+syntax = "proto3";
+
+package com.xiang.proto.reader;
+
+import "common.proto";
+
+//服务器根目录 http:...:8000/server
+
+// 获取文章列表 10001
+// url: /articles/getarticles
+message Request10001 {
+	com.xiang.proto.RequestCommon common = 1;
+	Params params = 2;
+	message Params {
+		Category category = 1;     // 请求的文章类型
+		int32 index = 2;           // 第几页，第一页是0
+	}
+}
+
+message Response10001 {
+	com.xiang.proto.ResponseCommon common = 1;
+	Data data = 2;
+	message Data {
+		repeated Article articles = 1;       // 文章列表
+		int32 maxCount = 2;                  // 每页的最多个数，如果小于，则没有加载更多
+	}
+}
+
+// 搜索文章列表 10002
+// url: /articles/searchArticles
+message Request10002 {
+	com.xiang.proto.RequestCommon common = 1;
+	Params params = 2;
+	message Params {
+		string keyword = 1;                 // 搜索的关键字
+		int32 index = 2;                    // 分页 0,1,2,3...
+	}
+}
+
+message Response10002 {
+	com.xiang.proto.ResponseCommon common = 1;
+	Data data = 2;
+	message Data {
+		repeated Article articles = 1;       // 文章列表
+		int32 maxCount = 2;                  // 每页的最多个数，如果小于，则没有加载更多
+	}
+}
+
+// 收藏文章 10003
+// url: /articles/collectArticles
+message Request10003 {
+	com.xiang.proto.RequestCommon common = 1;
+	Params params = 2;
+	message Params {
+		int32 articleId = 1;                // 文章id
+		Category category = 2;              // 文章分类
+		OptionType optionType = 3;          // 操作类型，取消收藏或者是收藏
+	}
+	enum OptionType {
+		COLLECT = 0;          // 收藏
+		UNCOLLECT = 1;        // 取消收藏
+	}
+}
+
+message Response10003 {
+	com.xiang.proto.ResponseCommon common = 1;
+	Data data = 2;
+	message Data {
+		
+	}
+}
+
+// 获取文章（普通图文的文章）详情 10004
+// url: /articles/getDetailArticles
+message Request10004 {
+	com.xiang.proto.RequestCommon common = 1;
+	Params params = 2;
+	message Params {
+		int32 articleId = 1;                // 文章id
+		Category category = 2;              // 文章分类
+	}
+}
+
+message Response10004 {
+	com.xiang.proto.ResponseCommon common = 1;
+	Data data = 2;
+	message Data {
+		Article article = 1;    // 文章详情
+	}
+}
+
+

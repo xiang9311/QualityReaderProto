@@ -1,0 +1,82 @@
+private MyHandler mHandler;
+class MyHandler extends BaseHandler{
+
+    public MyHandler(Context context, SwipeRefreshLayout mSwipeRefreshLayout) {
+        super(context, mSwipeRefreshLayout);
+    }
+
+    @Override
+    public void handleMessage(Message msg) {
+        super.handleMessage(msg);
+        switch (msg.what){
+            
+        }
+    }
+}
+
+/**
+ * 登录的线程
+ */
+class LoginThread extends Thread{
+    public LoginThread(){
+
+    }
+    
+    @Override
+    public void run() {
+        super.run();
+
+        long currentMills = System.currentTimeMillis();
+        int cmdid = 11003;
+        Pilot.Request11003 request = new Pilot.Request11003();
+        Pilot.Request11003.Params params = new Pilot.Request11003.Params();
+        Common.RequestCommon common = RequestUtil.getProtoCommon(cmdid, currentMills);
+        request.common = common;
+        request.params = params;
+
+
+        byte[] result = RequestUtil.postWithProtobuf(request, Url.URL_LOGIN, cmdid, currentMills);
+        if (null != result){
+            // 加载成功
+            try{
+                Pilot.Response11003 response = Pilot.Response11003.parseFrom(result);
+
+                if (response.common != null){
+                    if(response.common.code == 0){
+                        UserStatic.loginUserName = phone;     // 用户名或密码
+                        UserStatic.realUserName = response.data.userName;
+                        UserStatic.avatarUrl = response.data.userAvatar;
+                        UserStatic.logged = true;
+                        UserStatic.phone = response.data.phone;
+                        UserStatic.psssword = password;
+                        UserStatic.userId = response.data.userId;
+                        Message msg = Message.obtain();
+                        msg.what = KEY_LOGIN_SUC;
+                        mHandler.sendMessage(msg);
+                    } else{
+                        // code is not 0, find error
+                        Message msg = Message.obtain();
+                        msg.what = KEY_LOGIN_ERROR;
+                        mHandler.sendMessage(msg);
+                    }
+                } else {
+                    Message msg = Message.obtain();
+                    msg.what = BaseHandler.KEY_ERROR;
+                    msg.obj = "数据错误";
+                    mHandler.sendMessage(msg);
+                }
+
+            } catch (Exception e){
+                Message msg = Message.obtain();
+                msg.what = BaseHandler.KEY_PARSE_ERROR;
+                mHandler.sendMessage(msg);
+                e.printStackTrace();
+            }
+        } else {
+            // 加载失败
+            Message msg = Message.obtain();
+            msg.what = BaseHandler.KEY_NO_RES;
+            mHandler.sendMessage(msg);
+        }
+    }
+}
