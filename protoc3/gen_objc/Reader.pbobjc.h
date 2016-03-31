@@ -16,11 +16,13 @@ CF_EXTERN_C_BEGIN
 @class Request10002_Params;
 @class Request10003_Params;
 @class Request10004_Params;
+@class Request10005_Params;
 @class RequestCommon;
 @class Response10001_Data;
 @class Response10002_Data;
 @class Response10003_Data;
 @class Response10004_Data;
+@class Response10005_Data;
 @class ResponseCommon;
 GPB_ENUM_FWD_DECLARE(Category_Enum);
 
@@ -335,6 +337,78 @@ typedef GPB_ENUM(Response10004_Data_FieldNumber) {
 // 文章详情
 @property(nonatomic, readwrite) BOOL hasArticle;
 @property(nonatomic, readwrite, strong, null_resettable) Article *article;
+
+@end
+
+#pragma mark - Request10005
+
+typedef GPB_ENUM(Request10005_FieldNumber) {
+  Request10005_FieldNumber_Common = 1,
+  Request10005_FieldNumber_Params = 2,
+};
+
+// 搜索组织列表 10005
+// url: /articles/searchOrganizations
+@interface Request10005 : GPBMessage
+
+@property(nonatomic, readwrite) BOOL hasCommon;
+@property(nonatomic, readwrite, strong, null_resettable) RequestCommon *common;
+
+@property(nonatomic, readwrite) BOOL hasParams;
+@property(nonatomic, readwrite, strong, null_resettable) Request10005_Params *params;
+
+@end
+
+#pragma mark - Request10005_Params
+
+typedef GPB_ENUM(Request10005_Params_FieldNumber) {
+  Request10005_Params_FieldNumber_Keyword = 1,
+  Request10005_Params_FieldNumber_Index = 2,
+};
+
+@interface Request10005_Params : GPBMessage
+
+// 搜索的关键字
+@property(nonatomic, readwrite, copy, null_resettable) NSString *keyword;
+
+// 分页 0,1,2,3...
+@property(nonatomic, readwrite) int32_t index;
+
+@end
+
+#pragma mark - Response10005
+
+typedef GPB_ENUM(Response10005_FieldNumber) {
+  Response10005_FieldNumber_Common = 1,
+  Response10005_FieldNumber_Data_p = 2,
+};
+
+@interface Response10005 : GPBMessage
+
+@property(nonatomic, readwrite) BOOL hasCommon;
+@property(nonatomic, readwrite, strong, null_resettable) ResponseCommon *common;
+
+@property(nonatomic, readwrite) BOOL hasData_p;
+@property(nonatomic, readwrite, strong, null_resettable) Response10005_Data *data_p;
+
+@end
+
+#pragma mark - Response10005_Data
+
+typedef GPB_ENUM(Response10005_Data_FieldNumber) {
+  Response10005_Data_FieldNumber_OrganizaArray = 1,
+  Response10005_Data_FieldNumber_MaxCount = 2,
+};
+
+@interface Response10005_Data : GPBMessage
+
+// 文章列表
+// |organizaArray| contains |Organize|
+@property(nonatomic, readwrite, strong, null_resettable) NSMutableArray *organizaArray;
+@property(nonatomic, readonly) NSUInteger organizaArray_Count;
+
+// 每页的最多个数，如果小于，则没有加载更多
+@property(nonatomic, readwrite) int32_t maxCount;
 
 @end
 

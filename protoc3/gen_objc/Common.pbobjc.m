@@ -743,12 +743,14 @@ void SetArticle_Category_RawValue(Article *message, int32_t value) {
 @dynamic collectTime;
 @dynamic articleType;
 @dynamic articleId;
+@dynamic category;
 
 typedef struct Collect__storage_ {
   uint32_t _has_storage_[1];
   int32_t id_p;
   int32_t articleType;
   int32_t articleId;
+  Category_Enum category;
   Organize *organize;
   NSString *title;
   NSString *collectTime;
@@ -826,6 +828,17 @@ typedef struct Collect__storage_ {
         .dataTypeSpecific.className = NULL,
         .fieldOptions = NULL,
       },
+      {
+        .name = "category",
+        .number = Collect_FieldNumber_Category,
+        .hasIndex = 6,
+        .flags = GPBFieldOptional | GPBFieldHasEnumDescriptor,
+        .dataType = GPBDataTypeEnum,
+        .offset = offsetof(Collect__storage_, category),
+        .defaultValue.valueEnum = Category_Enum_Main,
+        .dataTypeSpecific.enumDescFunc = Category_Enum_EnumDescriptor,
+        .fieldOptions = NULL,
+      },
     };
 #if GPBOBJC_SKIP_MESSAGE_TEXTFORMAT_EXTRAS
     const char *extraTextFormatInfo = NULL;
@@ -854,6 +867,18 @@ typedef struct Collect__storage_ {
 }
 
 @end
+
+int32_t Collect_Category_RawValue(Collect *message) {
+  GPBDescriptor *descriptor = [Collect descriptor];
+  GPBFieldDescriptor *field = [descriptor fieldWithNumber:Collect_FieldNumber_Category];
+  return GPBGetMessageInt32Field(message, field);
+}
+
+void SetCollect_Category_RawValue(Collect *message, int32_t value) {
+  GPBDescriptor *descriptor = [Collect descriptor];
+  GPBFieldDescriptor *field = [descriptor fieldWithNumber:Collect_FieldNumber_Category];
+  GPBSetInt32IvarWithFieldInternal(message, field, value, descriptor.file.syntax);
+}
 
 #pragma mark - DetailUser
 

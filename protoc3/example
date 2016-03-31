@@ -43,13 +43,6 @@ class LoginThread extends Thread{
 
                 if (response.common != null){
                     if(response.common.code == 0){
-                        UserStatic.loginUserName = phone;     // 用户名或密码
-                        UserStatic.realUserName = response.data.userName;
-                        UserStatic.avatarUrl = response.data.userAvatar;
-                        UserStatic.logged = true;
-                        UserStatic.phone = response.data.phone;
-                        UserStatic.psssword = password;
-                        UserStatic.userId = response.data.userId;
                         Message msg = Message.obtain();
                         msg.what = KEY_LOGIN_SUC;
                         mHandler.sendMessage(msg);

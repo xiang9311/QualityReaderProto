@@ -262,6 +262,7 @@ typedef GPB_ENUM(Collect_FieldNumber) {
   Collect_FieldNumber_CollectTime = 4,
   Collect_FieldNumber_ArticleType = 5,
   Collect_FieldNumber_ArticleId = 7,
+  Collect_FieldNumber_Category = 8,
 };
 
 //收藏
@@ -286,7 +287,13 @@ typedef GPB_ENUM(Collect_FieldNumber) {
 //string url = 6;                // 如果是网页，则这个是网页的url
 @property(nonatomic, readwrite) int32_t articleId;
 
+// 分类
+@property(nonatomic, readwrite) Category_Enum category;
+
 @end
+
+int32_t Collect_Category_RawValue(Collect *message);
+void SetCollect_Category_RawValue(Collect *message, int32_t value);
 
 #pragma mark - DetailUser
 

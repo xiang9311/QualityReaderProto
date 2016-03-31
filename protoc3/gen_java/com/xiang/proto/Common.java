@@ -6285,6 +6285,23 @@ public final class Common {
      * </pre>
      */
     int getArticleId();
+
+    /**
+     * <code>optional .com.xiang.proto.Category category = 8;</code>
+     *
+     * <pre>
+     * 分类
+     * </pre>
+     */
+    int getCategoryValue();
+    /**
+     * <code>optional .com.xiang.proto.Category category = 8;</code>
+     *
+     * <pre>
+     * 分类
+     * </pre>
+     */
+    com.xiang.proto.Common.Category getCategory();
   }
   /**
    * Protobuf type {@code com.xiang.proto.Collect}
@@ -6307,6 +6324,7 @@ public final class Common {
       collectTime_ = "";
       articleType_ = 0;
       articleId_ = 0;
+      category_ = 0;
     }
 
     @java.lang.Override
@@ -6371,6 +6389,12 @@ public final class Common {
             case 56: {
 
               articleId_ = input.readInt32();
+              break;
+            }
+            case 64: {
+              int rawValue = input.readEnum();
+
+              category_ = rawValue;
               break;
             }
           }
@@ -6553,6 +6577,30 @@ public final class Common {
       return articleId_;
     }
 
+    public static final int CATEGORY_FIELD_NUMBER = 8;
+    private int category_;
+    /**
+     * <code>optional .com.xiang.proto.Category category = 8;</code>
+     *
+     * <pre>
+     * 分类
+     * </pre>
+     */
+    public int getCategoryValue() {
+      return category_;
+    }
+    /**
+     * <code>optional .com.xiang.proto.Category category = 8;</code>
+     *
+     * <pre>
+     * 分类
+     * </pre>
+     */
+    public com.xiang.proto.Common.Category getCategory() {
+      com.xiang.proto.Common.Category result = com.xiang.proto.Common.Category.valueOf(category_);
+      return result == null ? com.xiang.proto.Common.Category.UNRECOGNIZED : result;
+    }
+
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -6583,6 +6631,9 @@ public final class Common {
       if (articleId_ != 0) {
         output.writeInt32(7, articleId_);
       }
+      if (category_ != com.xiang.proto.Common.Category.MAIN.getNumber()) {
+        output.writeEnum(8, category_);
+      }
     }
 
     public int getSerializedSize() {
@@ -6611,6 +6662,10 @@ public final class Common {
       if (articleId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(7, articleId_);
+      }
+      if (category_ != com.xiang.proto.Common.Category.MAIN.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(8, category_);
       }
       memoizedSize = size;
       return size;
@@ -6743,6 +6798,8 @@ public final class Common {
 
         articleId_ = 0;
 
+        category_ = 0;
+
         return this;
       }
 
@@ -6775,6 +6832,7 @@ public final class Common {
         result.collectTime_ = collectTime_;
         result.articleType_ = articleType_;
         result.articleId_ = articleId_;
+        result.category_ = category_;
         onBuilt();
         return result;
       }
@@ -6809,6 +6867,9 @@ public final class Common {
         }
         if (other.getArticleId() != 0) {
           setArticleId(other.getArticleId());
+        }
+        if (other.category_ != 0) {
+          setCategoryValue(other.getCategoryValue());
         }
         onChanged();
         return this;
@@ -7277,6 +7338,70 @@ public final class Common {
       public Builder clearArticleId() {
         
         articleId_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int category_ = 0;
+      /**
+       * <code>optional .com.xiang.proto.Category category = 8;</code>
+       *
+       * <pre>
+       * 分类
+       * </pre>
+       */
+      public int getCategoryValue() {
+        return category_;
+      }
+      /**
+       * <code>optional .com.xiang.proto.Category category = 8;</code>
+       *
+       * <pre>
+       * 分类
+       * </pre>
+       */
+      public Builder setCategoryValue(int value) {
+        category_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional .com.xiang.proto.Category category = 8;</code>
+       *
+       * <pre>
+       * 分类
+       * </pre>
+       */
+      public com.xiang.proto.Common.Category getCategory() {
+        com.xiang.proto.Common.Category result = com.xiang.proto.Common.Category.valueOf(category_);
+        return result == null ? com.xiang.proto.Common.Category.UNRECOGNIZED : result;
+      }
+      /**
+       * <code>optional .com.xiang.proto.Category category = 8;</code>
+       *
+       * <pre>
+       * 分类
+       * </pre>
+       */
+      public Builder setCategory(com.xiang.proto.Common.Category value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        
+        category_ = value.getNumber();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional .com.xiang.proto.Category category = 8;</code>
+       *
+       * <pre>
+       * 分类
+       * </pre>
+       */
+      public Builder clearCategory() {
+        
+        category_ = 0;
         onChanged();
         return this;
       }
@@ -8865,18 +8990,19 @@ public final class Common {
       "\t\022+\n\010category\030\014 \001(\0162\031.com.xiang.proto.Ca" +
       "tegory\022\022\n\ncreateTime\030\r \001(\t\022\021\n\treadCount\030" +
       "\003 \001(\005\022\022\n\nshareCount\030\016 \001(\005\022\022\n\nauthorName\030" +
-      "\017 \001(\t\"\216\001\n\007Collect\022\n\n\002id\030\001 \001(\005\022+\n\010organiz",
+      "\017 \001(\t\"\273\001\n\007Collect\022\n\n\002id\030\001 \001(\005\022+\n\010organiz",
       "e\030\002 \001(\0132\031.com.xiang.proto.Organize\022\r\n\005ti" +
       "tle\030\003 \001(\t\022\023\n\013collectTime\030\004 \001(\t\022\023\n\013articl" +
-      "eType\030\005 \001(\005\022\021\n\tarticleId\030\007 \001(\005\"\210\001\n\nDetai" +
-      "lUser\022\016\n\006userId\030\001 \001(\005\022\020\n\010userName\030\002 \001(\t\022" +
-      "\016\n\006avatar\030\003 \001(\t\022\r\n\005wx_no\030\004 \001(\t\022\r\n\005wb_no\030" +
-      "\005 \001(\t\022*\n\010articles\030\006 \003(\0132\030.com.xiang.prot" +
-      "o.Article*O\n\010Category\022\010\n\004MAIN\020\000\022\010\n\004DEEP\020" +
-      "\001\022\n\n\006IMAGES\020\002\022\n\n\006PEOPLE\020\003\022\n\n\006FORFUN\020\004\022\013\n" +
-      "\007FOREIGN\020\005*L\n\013ContentType\022\r\n\tBIG_IMAGE\020\000" +
-      "\022\013\n\007ARTICLE\020\001\022\021\n\rSHORT_ARTICLE\020\002\022\016\n\nIMAG",
-      "E_TEXT\020\003b\006proto3"
+      "eType\030\005 \001(\005\022\021\n\tarticleId\030\007 \001(\005\022+\n\010catego" +
+      "ry\030\010 \001(\0162\031.com.xiang.proto.Category\"\210\001\n\n" +
+      "DetailUser\022\016\n\006userId\030\001 \001(\005\022\020\n\010userName\030\002" +
+      " \001(\t\022\016\n\006avatar\030\003 \001(\t\022\r\n\005wx_no\030\004 \001(\t\022\r\n\005w" +
+      "b_no\030\005 \001(\t\022*\n\010articles\030\006 \003(\0132\030.com.xiang" +
+      ".proto.Article*O\n\010Category\022\010\n\004MAIN\020\000\022\010\n\004" +
+      "DEEP\020\001\022\n\n\006IMAGES\020\002\022\n\n\006PEOPLE\020\003\022\n\n\006FORFUN" +
+      "\020\004\022\013\n\007FOREIGN\020\005*L\n\013ContentType\022\r\n\tBIG_IM",
+      "AGE\020\000\022\013\n\007ARTICLE\020\001\022\021\n\rSHORT_ARTICLE\020\002\022\016\n" +
+      "\nIMAGE_TEXT\020\003b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -8925,7 +9051,7 @@ public final class Common {
     internal_static_com_xiang_proto_Collect_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_com_xiang_proto_Collect_descriptor,
-        new java.lang.String[] { "Id", "Organize", "Title", "CollectTime", "ArticleType", "ArticleId", });
+        new java.lang.String[] { "Id", "Organize", "Title", "CollectTime", "ArticleType", "ArticleId", "Category", });
     internal_static_com_xiang_proto_DetailUser_descriptor =
       getDescriptor().getMessageTypes().get(6);
     internal_static_com_xiang_proto_DetailUser_fieldAccessorTable = new

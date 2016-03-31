@@ -89,6 +89,7 @@ message Collect {
   int32 articleType = 5;         // 收藏的类型。 1：web， 2：普通文章（一张cover） 3：图文（类似网易图文）
   //string url = 6;                // 如果是网页，则这个是网页的url
   int32 articleId = 7;           // 文章的id
+  Category category = 8;         // 分类
 }
 
 // 用户详情

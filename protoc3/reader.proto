@@ -89,4 +89,23 @@ message Response10004 {
 	}
 }
 
+// 搜索组织列表 10005
+// url: /articles/searchOrganizations
+message Request10005 {
+	com.xiang.proto.RequestCommon common = 1;
+	Params params = 2;
+	message Params {
+		string keyword = 1;                  // 搜索的关键字
+		int32 index = 2;                     // 分页 0,1,2,3...
+	}
+}
+
+message Response10005 {
+	com.xiang.proto.ResponseCommon common = 1;
+	Data data = 2;
+	message Data {
+		repeated Organize organiza = 1;       // 文章列表
+		int32 maxCount = 2;                   // 每页的最多个数，如果小于，则没有加载更多
+	}
+}
 

@@ -926,6 +926,9 @@ public interface Common {
     // optional int32 articleId = 7;
     public int articleId;
 
+    // optional .com.xiang.proto.Category category = 8;
+    public int category;
+
     public Collect() {
       clear();
     }
@@ -937,6 +940,7 @@ public interface Common {
       collectTime = "";
       articleType = 0;
       articleId = 0;
+      category = com.xiang.proto.nano.Common.MAIN;
       cachedSize = -1;
       return this;
     }
@@ -961,6 +965,9 @@ public interface Common {
       }
       if (this.articleId != 0) {
         output.writeInt32(7, this.articleId);
+      }
+      if (this.category != com.xiang.proto.nano.Common.MAIN) {
+        output.writeInt32(8, this.category);
       }
       super.writeTo(output);
     }
@@ -991,6 +998,10 @@ public interface Common {
       if (this.articleId != 0) {
         size += com.google.protobuf.nano.CodedOutputByteBufferNano
             .computeInt32Size(7, this.articleId);
+      }
+      if (this.category != com.xiang.proto.nano.Common.MAIN) {
+        size += com.google.protobuf.nano.CodedOutputByteBufferNano
+          .computeInt32Size(8, this.category);
       }
       return size;
     }
@@ -1035,6 +1046,20 @@ public interface Common {
           }
           case 56: {
             this.articleId = input.readInt32();
+            break;
+          }
+          case 64: {
+            int value = input.readInt32();
+            switch (value) {
+              case com.xiang.proto.nano.Common.MAIN:
+              case com.xiang.proto.nano.Common.DEEP:
+              case com.xiang.proto.nano.Common.IMAGES:
+              case com.xiang.proto.nano.Common.PEOPLE:
+              case com.xiang.proto.nano.Common.FORFUN:
+              case com.xiang.proto.nano.Common.FOREIGN:
+                this.category = value;
+                break;
+            }
             break;
           }
         }
