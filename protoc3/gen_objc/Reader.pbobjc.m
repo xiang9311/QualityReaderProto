@@ -1398,5 +1398,264 @@ typedef struct Response10005_Data__storage_ {
 
 @end
 
+#pragma mark - Request10006
+
+@implementation Request10006
+
+@dynamic hasCommon, common;
+@dynamic hasParams, params;
+
+typedef struct Request10006__storage_ {
+  uint32_t _has_storage_[1];
+  RequestCommon *common;
+  Request10006_Params *params;
+} Request10006__storage_;
+
+// This method is threadsafe because it is initially called
+// in +initialize for each subclass.
++ (GPBDescriptor *)descriptor {
+  static GPBDescriptor *descriptor = nil;
+  if (!descriptor) {
+    static GPBMessageFieldDescription fields[] = {
+      {
+        .name = "common",
+        .number = Request10006_FieldNumber_Common,
+        .hasIndex = 0,
+        .flags = GPBFieldOptional,
+        .dataType = GPBDataTypeMessage,
+        .offset = offsetof(Request10006__storage_, common),
+        .defaultValue.valueMessage = nil,
+        .dataTypeSpecific.className = GPBStringifySymbol(RequestCommon),
+        .fieldOptions = NULL,
+      },
+      {
+        .name = "params",
+        .number = Request10006_FieldNumber_Params,
+        .hasIndex = 1,
+        .flags = GPBFieldOptional,
+        .dataType = GPBDataTypeMessage,
+        .offset = offsetof(Request10006__storage_, params),
+        .defaultValue.valueMessage = nil,
+        .dataTypeSpecific.className = GPBStringifySymbol(Request10006_Params),
+        .fieldOptions = NULL,
+      },
+    };
+    GPBDescriptor *localDescriptor =
+        [GPBDescriptor allocDescriptorForClass:[Request10006 class]
+                                     rootClass:[ReaderRoot class]
+                                          file:ReaderRoot_FileDescriptor()
+                                        fields:fields
+                                    fieldCount:sizeof(fields) / sizeof(GPBMessageFieldDescription)
+                                        oneofs:NULL
+                                    oneofCount:0
+                                         enums:NULL
+                                     enumCount:0
+                                        ranges:NULL
+                                    rangeCount:0
+                                   storageSize:sizeof(Request10006__storage_)
+                                    wireFormat:NO];
+    NSAssert(descriptor == nil, @"Startup recursed!");
+    descriptor = localDescriptor;
+  }
+  return descriptor;
+}
+
+@end
+
+#pragma mark - Request10006_Params
+
+@implementation Request10006_Params
+
+@dynamic category;
+@dynamic articleId;
+@dynamic optionType;
+
+typedef struct Request10006_Params__storage_ {
+  uint32_t _has_storage_[1];
+  Category_Enum category;
+  int32_t articleId;
+  int32_t optionType;
+} Request10006_Params__storage_;
+
+// This method is threadsafe because it is initially called
+// in +initialize for each subclass.
++ (GPBDescriptor *)descriptor {
+  static GPBDescriptor *descriptor = nil;
+  if (!descriptor) {
+    static GPBMessageFieldDescription fields[] = {
+      {
+        .name = "category",
+        .number = Request10006_Params_FieldNumber_Category,
+        .hasIndex = 0,
+        .flags = GPBFieldOptional | GPBFieldHasEnumDescriptor,
+        .dataType = GPBDataTypeEnum,
+        .offset = offsetof(Request10006_Params__storage_, category),
+        .defaultValue.valueEnum = Category_Enum_Main,
+        .dataTypeSpecific.enumDescFunc = Category_Enum_EnumDescriptor,
+        .fieldOptions = NULL,
+      },
+      {
+        .name = "articleId",
+        .number = Request10006_Params_FieldNumber_ArticleId,
+        .hasIndex = 1,
+        .flags = GPBFieldOptional | GPBFieldTextFormatNameCustom,
+        .dataType = GPBDataTypeInt32,
+        .offset = offsetof(Request10006_Params__storage_, articleId),
+        .defaultValue.valueInt32 = 0,
+        .dataTypeSpecific.className = NULL,
+        .fieldOptions = NULL,
+      },
+      {
+        .name = "optionType",
+        .number = Request10006_Params_FieldNumber_OptionType,
+        .hasIndex = 2,
+        .flags = GPBFieldOptional | GPBFieldTextFormatNameCustom,
+        .dataType = GPBDataTypeInt32,
+        .offset = offsetof(Request10006_Params__storage_, optionType),
+        .defaultValue.valueInt32 = 0,
+        .dataTypeSpecific.className = NULL,
+        .fieldOptions = NULL,
+      },
+    };
+#if GPBOBJC_SKIP_MESSAGE_TEXTFORMAT_EXTRAS
+    const char *extraTextFormatInfo = NULL;
+#else
+    static const char *extraTextFormatInfo = "\002\002\t\000\003\n\000";
+#endif  // GPBOBJC_SKIP_MESSAGE_TEXTFORMAT_EXTRAS
+    GPBDescriptor *localDescriptor =
+        [GPBDescriptor allocDescriptorForClass:[Request10006_Params class]
+                                     rootClass:[ReaderRoot class]
+                                          file:ReaderRoot_FileDescriptor()
+                                        fields:fields
+                                    fieldCount:sizeof(fields) / sizeof(GPBMessageFieldDescription)
+                                        oneofs:NULL
+                                    oneofCount:0
+                                         enums:NULL
+                                     enumCount:0
+                                        ranges:NULL
+                                    rangeCount:0
+                                   storageSize:sizeof(Request10006_Params__storage_)
+                                    wireFormat:NO
+                           extraTextFormatInfo:extraTextFormatInfo];
+    NSAssert(descriptor == nil, @"Startup recursed!");
+    descriptor = localDescriptor;
+  }
+  return descriptor;
+}
+
+@end
+
+int32_t Request10006_Params_Category_RawValue(Request10006_Params *message) {
+  GPBDescriptor *descriptor = [Request10006_Params descriptor];
+  GPBFieldDescriptor *field = [descriptor fieldWithNumber:Request10006_Params_FieldNumber_Category];
+  return GPBGetMessageInt32Field(message, field);
+}
+
+void SetRequest10006_Params_Category_RawValue(Request10006_Params *message, int32_t value) {
+  GPBDescriptor *descriptor = [Request10006_Params descriptor];
+  GPBFieldDescriptor *field = [descriptor fieldWithNumber:Request10006_Params_FieldNumber_Category];
+  GPBSetInt32IvarWithFieldInternal(message, field, value, descriptor.file.syntax);
+}
+
+#pragma mark - Response10006
+
+@implementation Response10006
+
+@dynamic hasCommon, common;
+@dynamic hasData_p, data_p;
+
+typedef struct Response10006__storage_ {
+  uint32_t _has_storage_[1];
+  ResponseCommon *common;
+  Response10006_Data *data_p;
+} Response10006__storage_;
+
+// This method is threadsafe because it is initially called
+// in +initialize for each subclass.
++ (GPBDescriptor *)descriptor {
+  static GPBDescriptor *descriptor = nil;
+  if (!descriptor) {
+    static GPBMessageFieldDescription fields[] = {
+      {
+        .name = "common",
+        .number = Response10006_FieldNumber_Common,
+        .hasIndex = 0,
+        .flags = GPBFieldOptional,
+        .dataType = GPBDataTypeMessage,
+        .offset = offsetof(Response10006__storage_, common),
+        .defaultValue.valueMessage = nil,
+        .dataTypeSpecific.className = GPBStringifySymbol(ResponseCommon),
+        .fieldOptions = NULL,
+      },
+      {
+        .name = "data_p",
+        .number = Response10006_FieldNumber_Data_p,
+        .hasIndex = 1,
+        .flags = GPBFieldOptional,
+        .dataType = GPBDataTypeMessage,
+        .offset = offsetof(Response10006__storage_, data_p),
+        .defaultValue.valueMessage = nil,
+        .dataTypeSpecific.className = GPBStringifySymbol(Response10006_Data),
+        .fieldOptions = NULL,
+      },
+    };
+    GPBDescriptor *localDescriptor =
+        [GPBDescriptor allocDescriptorForClass:[Response10006 class]
+                                     rootClass:[ReaderRoot class]
+                                          file:ReaderRoot_FileDescriptor()
+                                        fields:fields
+                                    fieldCount:sizeof(fields) / sizeof(GPBMessageFieldDescription)
+                                        oneofs:NULL
+                                    oneofCount:0
+                                         enums:NULL
+                                     enumCount:0
+                                        ranges:NULL
+                                    rangeCount:0
+                                   storageSize:sizeof(Response10006__storage_)
+                                    wireFormat:NO];
+    NSAssert(descriptor == nil, @"Startup recursed!");
+    descriptor = localDescriptor;
+  }
+  return descriptor;
+}
+
+@end
+
+#pragma mark - Response10006_Data
+
+@implementation Response10006_Data
+
+
+typedef struct Response10006_Data__storage_ {
+  uint32_t _has_storage_[0];
+} Response10006_Data__storage_;
+
+// This method is threadsafe because it is initially called
+// in +initialize for each subclass.
++ (GPBDescriptor *)descriptor {
+  static GPBDescriptor *descriptor = nil;
+  if (!descriptor) {
+    GPBDescriptor *localDescriptor =
+        [GPBDescriptor allocDescriptorForClass:[Response10006_Data class]
+                                     rootClass:[ReaderRoot class]
+                                          file:ReaderRoot_FileDescriptor()
+                                        fields:NULL
+                                    fieldCount:0
+                                        oneofs:NULL
+                                    oneofCount:0
+                                         enums:NULL
+                                     enumCount:0
+                                        ranges:NULL
+                                    rangeCount:0
+                                   storageSize:sizeof(Response10006_Data__storage_)
+                                    wireFormat:NO];
+    NSAssert(descriptor == nil, @"Startup recursed!");
+    descriptor = localDescriptor;
+  }
+  return descriptor;
+}
+
+@end
+
 
 // @@protoc_insertion_point(global_scope)

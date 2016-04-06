@@ -7,7 +7,7 @@ import "common.proto";
 //服务器根目录 http:...:8000/server
 
 // 获取文章列表 10001
-// url: /articles/getarticles
+// url: /articles/getArticles
 message Request10001 {
 	com.xiang.proto.RequestCommon common = 1;
 	Params params = 2;
@@ -109,3 +109,22 @@ message Response10005 {
 	}
 }
 
+
+// 统计
+// url: /articles/count
+message Request10006 {
+	com.xiang.proto.RequestCommon common = 1;
+	Params params = 2;
+	message Params {
+		Category category = 1;           // 文章分类
+		int32 articleId = 2;             // id
+		int32 optionType = 3;            // 1:阅读 3：分享
+	}
+}
+
+message Response10006 {
+	com.xiang.proto.ResponseCommon common = 1;
+	Data data = 2;
+	message Data {
+	}
+}

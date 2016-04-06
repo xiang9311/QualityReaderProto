@@ -17,12 +17,14 @@ CF_EXTERN_C_BEGIN
 @class Request10003_Params;
 @class Request10004_Params;
 @class Request10005_Params;
+@class Request10006_Params;
 @class RequestCommon;
 @class Response10001_Data;
 @class Response10002_Data;
 @class Response10003_Data;
 @class Response10004_Data;
 @class Response10005_Data;
+@class Response10006_Data;
 @class ResponseCommon;
 GPB_ENUM_FWD_DECLARE(Category_Enum);
 
@@ -62,7 +64,7 @@ typedef GPB_ENUM(Request10001_FieldNumber) {
 };
 
 // 获取文章列表 10001
-// url: /articles/getarticles
+// url: /articles/getArticles
 @interface Request10001 : GPBMessage
 
 @property(nonatomic, readwrite) BOOL hasCommon;
@@ -409,6 +411,72 @@ typedef GPB_ENUM(Response10005_Data_FieldNumber) {
 
 // 每页的最多个数，如果小于，则没有加载更多
 @property(nonatomic, readwrite) int32_t maxCount;
+
+@end
+
+#pragma mark - Request10006
+
+typedef GPB_ENUM(Request10006_FieldNumber) {
+  Request10006_FieldNumber_Common = 1,
+  Request10006_FieldNumber_Params = 2,
+};
+
+// 统计
+// url: /articles/count
+@interface Request10006 : GPBMessage
+
+@property(nonatomic, readwrite) BOOL hasCommon;
+@property(nonatomic, readwrite, strong, null_resettable) RequestCommon *common;
+
+@property(nonatomic, readwrite) BOOL hasParams;
+@property(nonatomic, readwrite, strong, null_resettable) Request10006_Params *params;
+
+@end
+
+#pragma mark - Request10006_Params
+
+typedef GPB_ENUM(Request10006_Params_FieldNumber) {
+  Request10006_Params_FieldNumber_Category = 1,
+  Request10006_Params_FieldNumber_ArticleId = 2,
+  Request10006_Params_FieldNumber_OptionType = 3,
+};
+
+@interface Request10006_Params : GPBMessage
+
+// 文章分类
+@property(nonatomic, readwrite) enum Category_Enum category;
+
+// id
+@property(nonatomic, readwrite) int32_t articleId;
+
+// 1:阅读   2：收藏  3：分享
+@property(nonatomic, readwrite) int32_t optionType;
+
+@end
+
+int32_t Request10006_Params_Category_RawValue(Request10006_Params *message);
+void SetRequest10006_Params_Category_RawValue(Request10006_Params *message, int32_t value);
+
+#pragma mark - Response10006
+
+typedef GPB_ENUM(Response10006_FieldNumber) {
+  Response10006_FieldNumber_Common = 1,
+  Response10006_FieldNumber_Data_p = 2,
+};
+
+@interface Response10006 : GPBMessage
+
+@property(nonatomic, readwrite) BOOL hasCommon;
+@property(nonatomic, readwrite, strong, null_resettable) ResponseCommon *common;
+
+@property(nonatomic, readwrite) BOOL hasData_p;
+@property(nonatomic, readwrite, strong, null_resettable) Response10006_Data *data_p;
+
+@end
+
+#pragma mark - Response10006_Data
+
+@interface Response10006_Data : GPBMessage
 
 @end
 
